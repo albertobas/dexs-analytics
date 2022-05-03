@@ -1,0 +1,5 @@
+export const UNISWAP_V3_TOKENS_TO_HIDE = [
+  '0xd46ba6d942050d489dbd938a2c909a5d5039a161',
+  '0x7dfb72a2aad08c937706f21421b15bfc34cba9ca',
+  '0x12b32f10a499bf40db334efe04226cca00bf2d9b',
+];

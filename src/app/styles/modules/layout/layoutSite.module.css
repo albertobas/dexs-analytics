@@ -1,0 +1,56 @@
+.containerOuter {
+  background-color: var(--black-500);
+}
+.containerInner {
+  display: flex;
+  flex-direction: row;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  align-items: center;
+}
+.title {
+  margin: 1rem 0;
+  text-align: center;
+  color: #fff;
+}
+.protocols {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.protocols > a {
+  @mixin $text-lg;
+}
+.selected {
+  color: #fff;
+  font-weight: 800;
+}
+.footerParagraph {
+  margin-left: auto;
+  margin-right: auto;
+  @mixin $text-sm;
+}
+.footerParagraph > a {
+  text-decoration: underline;
+}
+.protocols > a:not(:last-child) {
+  margin-right: 1.5rem;
+}
+.protocols > a:hover,
+.footerParagraph > a:hover {
+  color: #fff;
+}
+@media (--mobile-xl) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .protocols {
+    margin-left: 0;
+  }
+  .protocols > a:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}

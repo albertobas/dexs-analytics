@@ -1,0 +1,27 @@
+.containerOuter {
+  background-color: var(--black-400);
+}
+.containerInner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.containerInner > a {
+  font-size: 1rem;
+  line-height: 3rem;
+  padding: 0 1.5rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+.containerInner > a:hover {
+  color: #fff;
+  background-color: var(--black-200);
+}
+.selected {
+  color: #fff;
+  font-weight: 700;
+}

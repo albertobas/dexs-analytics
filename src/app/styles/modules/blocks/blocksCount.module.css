@@ -1,0 +1,19 @@
+.container {
+  @mixin $text-xs;
+  max-width: var(--max-width);
+  margin: 1rem auto;
+  padding: 0 1.5rem;
+  color: var(--gray-300);
+}
+.blocks {
+  @mixin $text-sm;
+  font-family: var(--font-mono);
+  color: var(--green);
+  font-weight: 800;
+  margin: 0 0.4rem;
+}
+.date {
+  font-family: var(--font-sans);
+  color: #fff;
+  margin-left: 0.4rem;
+}

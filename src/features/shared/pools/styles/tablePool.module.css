@@ -1,0 +1,104 @@
+.containerOuter {
+  margin: 1rem 0;
+}
+.containerInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.table {
+  background-color: var(--black-500);
+  box-shadow: var(--shadow);
+}
+.table > h2 {
+  margin-top: 0;
+  padding: 1rem 0 0 1rem;
+}
+.headers,
+.row {
+  display: grid;
+  align-items: center;
+  gap: 0;
+  grid-template-columns: 10% 40% repeat(4, calc(50% / 4));
+}
+.headers {
+  padding: 1rem;
+}
+.row {
+  padding: 0.5rem 1rem;
+}
+.headers > div {
+  color: var(--gray-100);
+}
+.headers > div > span {
+  cursor: pointer;
+}
+.headers > div:not(:nth-child(2)) > span {
+  float: right;
+}
+.row > div:not(:first-of-type) {
+  font-weight: 800;
+  color: #fff;
+}
+.percentagePositive {
+  color: var(--green);
+}
+.percentageNegative {
+  color: var(--red);
+}
+.percentagePositive,
+.percentageNegative {
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding-left: 0.5em;
+  @mixin $text-sm;
+}
+.headers > div > span:hover {
+  color: #fff;
+}
+#rowId > span {
+  color: var(--gray-400);
+  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+  @mixin $text-sm;
+}
+#tvl,
+#volume,
+#volume1W,
+#fees {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+}
+@media (--laptop) {
+  #fees,
+  #headerFees {
+    display: none;
+  }
+  .headers,
+  .row {
+    grid-template-columns: 10% 40% repeat(3, calc(50% / 3));
+  }
+}
+
+@media (--mobile-xl) {
+  #volume1W,
+  #headerVolume1W {
+    display: none;
+  }
+  .headers,
+  .row {
+    grid-template-columns: 10% 40% repeat(2, calc(50% / 2));
+  }
+}
+@media (--mobile-l) {
+  #tvl,
+  #headerTvl {
+    display: none;
+  }
+  .headers,
+  .row {
+    grid-template-columns: 10% 40% 50%;
+  }
+}

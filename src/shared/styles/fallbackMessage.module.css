@@ -1,0 +1,6 @@
+.container {
+  @mixin $text-lg;
+  text-align: center;
+  color: var(--gray-300);
+  padding: 10rem 0;
+}

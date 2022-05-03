@@ -1,0 +1,45 @@
+.container {
+  box-shadow: var(--box-shadow);
+}
+.title {
+  background-color: transparent;
+  cursor: pointer;
+  @mixin $text-base;
+  border: 0;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 3rem;
+  padding: 0 1.5rem;
+  font-family: var(--font-sans);
+}
+.containerList {
+  width: 10rem;
+  position: absolute;
+  margin: 0.5em 0 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+.list {
+  background-color: var(--black-500);
+  padding: 0;
+  margin: 0;
+}
+.selected {
+  font-weight: 800;
+  color: #fff;
+}
+.list > li > a,
+.list > li > span {
+  display: block;
+  padding: 1rem;
+  color: #fff;
+  @mixin $text-lg;
+  text-transform: capitalize;
+}
+.container:hover,
+.list > li > a:hover {
+  background-color: var(--black-200);
+}
+.list > li > a:hover {
+  color: #fff;
+}

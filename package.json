@@ -1,0 +1,65 @@
+{
+  "name": "dexes-analytics",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint '**/*.js' '**/*.ts' '**/*.tsx'",
+    "style-lint": "stylelint 'src/**/*.css'",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "prettier src --write ."
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
+    "dayjs": "^1.11.0",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.8",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^1.0.7",
+    "eslint": "^8.12.0",
+    "eslint-config-react-app": "^7.0.1",
+    "postcss": "^8.4.12",
+    "postcss-custom-media": "^8.0.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-mixins": "^9.0.2",
+    "postcss-preset-env": "^7.4.3",
+    "postcss-simple-vars": "^6.0.3",
+    "prettier": "^2.6.1",
+    "stylelint": "^14.6.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended": "^7.0.0",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "react/prop-types": 0,
+      "react/no-unescaped-entities": 0
+    },
+    "ignorePatterns": [
+      "node_modules",
+      "dist"
+    ]
+  },
+  "prettier": {
+    "useTabs": false,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "printWidth": 120
+  }
+}

@@ -1,0 +1,61 @@
+:root {
+  --max-width: 1280px;
+  --gray-100: #f4f4f4;
+  --gray-200: #d7d7d7;
+  --gray-300: #b9b9b9;
+  --gray-400: #616161;
+  --black-100: #3d3d3d;
+  --black-200: #333333;
+  --black-300: #1a1a1a;
+  --black-400: #111111;
+  --black-500: #0a0a0a;
+  --green: #18a055;
+  --red: #ff0040;
+  --border-radius: 0.3rem;
+  --shadow: 0px 1px 5px var(--black-200);
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
+    sans-serif;
+  --font-mono: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
+    monospace;
+}
+html {
+  background-color: var(--black-500);
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  box-sizing: border-box;
+  background-color: var(--black-300);
+  color: var(--gray-200);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1 {
+  @mixin $text-2xl;
+}
+h2 {
+  @mixin $text-xl;
+}
+h1,
+h2 {
+  margin: 2rem 0 1rem;
+  letter-spacing: -0.025em;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+p {
+  margin: 1rem 0;
+  @mixin $text-base;
+}
+ul {
+  list-style-type: none;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
