@@ -14,7 +14,6 @@ In order to develope it I have adopted a clean architecture adapted to the front
 - **Front-end**: [React.js](https://reactjs.org)
 - **Query Language**: [GraphQL](https://graphql.org)
 - **Data resource**: [TheGraph](https://thegraph.com)
-- **Deployment**: [Vercel](https://vercel.com)
 - **Styling**: [PostCSS](https://postcss.org)
 
 ## Overview
