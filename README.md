@@ -6,7 +6,7 @@
 
 This repository consists of an application that aims to represent analytics of some decentralized exchanges.
 
-In order to develope it I have adopted a clean architecture adapted to the front-end.
+In order to develop it, I have adopted a clean architecture adapted to the front-end.
 
 ## Technical details
 
