@@ -5,7 +5,7 @@ import { TokensUniswapV3 } from 'src/features/uniswapV3/tokens/core/entities/Tok
 import { UNISWAP_V3_TOKENS_TO_HIDE } from 'src/features/uniswapV3/tokens/utils/constants';
 
 class TokensUniswapV3DataSource implements TokensUniswapV3Repository {
-  public async getByAddresses(endpoint: string, blocks: Blocks): Promise<TokensUniswapV3 | undefined> {
+  public async getByBlocks(endpoint: string, blocks: Blocks): Promise<TokensUniswapV3 | undefined> {
     const client = new GraphQLClient(endpoint);
     const getQuery = (blocksEntity: Blocks) => {
       let tokensToHide = '';

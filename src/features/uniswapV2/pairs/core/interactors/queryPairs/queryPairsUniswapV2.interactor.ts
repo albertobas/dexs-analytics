@@ -7,7 +7,7 @@ const queryPairsUniswapV2 =
   (pairsRepository: PairsUniswapV2Repository) =>
   async (endpoint: string, blocks: Blocks): Promise<{ error: boolean; data: Pools | null }> => {
     try {
-      const data = await pairsRepository.getByAddresses(endpoint, blocks);
+      const data = await pairsRepository.getByBlocks(endpoint, blocks);
       return { error: false, data: pairsUniswapV2Adapter(data) };
     } catch (e) {
       // if an error is thrown, it will be catched and true will be passed in error for our ui logic.

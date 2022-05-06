@@ -5,7 +5,7 @@ import { gql, GraphQLClient } from 'graphql-request';
 import { UNISWAP_V3_POOLS_TO_HIDE } from 'src/features/uniswapV3/pools/utils/constants';
 
 class PoolsUniswapV3DataSource implements PoolsUniswapV3Repository {
-  public async getByAddresses(endpoint: string, blocks: Blocks): Promise<PoolsUniswapV3 | undefined> {
+  public async getByBlocks(endpoint: string, blocks: Blocks): Promise<PoolsUniswapV3 | undefined> {
     const client = new GraphQLClient(endpoint);
     const getQuery = (blocksEntity: Blocks) => {
       let poolsToHide = '';

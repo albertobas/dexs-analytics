@@ -10,7 +10,7 @@ const queryBlocksEthereum =
   ): Promise<{ error: boolean; data: Blocks | null }> => {
     try {
       const [blocksFromTimestamp, blockCurrent] = await Promise.all([
-        blocksRepository.getBlocksFromTimestamp(endpoint, timestamps),
+        blocksRepository.getByTimestamps(endpoint, timestamps),
         blocksRepository.getCurrentBlock(endpoint),
       ]);
       const blocks = blockCurrent && blocksFromTimestamp ? { ...blockCurrent, ...blocksFromTimestamp } : null;

@@ -7,7 +7,7 @@ const queryTokensUniswapV3 =
   (tokensRepository: TokensUniswapV3Repository) =>
   async (endpoint: string, blocks: Blocks): Promise<{ error: boolean; data: Tokens | null }> => {
     try {
-      const data = await tokensRepository.getByAddresses(endpoint, blocks);
+      const data = await tokensRepository.getByBlocks(endpoint, blocks);
       return { error: false, data: tokensUniswapV3Adapter(data) };
     } catch (e) {
       // if an error is thrown, it will be catched and true will be passed in error for our ui logic.

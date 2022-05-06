@@ -6,7 +6,7 @@ import {
 import BlocksEthereumRepository from 'src/features/shared/blocks/core/repositories/BlocksEthereum.repository';
 
 class BlocksDataSource implements BlocksEthereumRepository {
-  public async getBlocksFromTimestamp(
+  public async getByTimestamps(
     endpoint: string,
     timestamps: { t1D: number; t2D: number; t1W: number }
   ): Promise<BlocksEthereumFromTimestamp | undefined> {

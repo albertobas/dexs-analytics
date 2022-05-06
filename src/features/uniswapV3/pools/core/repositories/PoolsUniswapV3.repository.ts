@@ -2,7 +2,7 @@ import { PoolsUniswapV3 } from 'src/features/uniswapV3/pools/core/entities/Pools
 import { Blocks } from 'src/features/shared/blocks/core/entities/Blocks';
 
 interface PoolsUniswapV3Repository {
-  getByAddresses(endpoint: string, blocks: Blocks): Promise<PoolsUniswapV3 | undefined>;
+  getByBlocks(endpoint: string, blocks: Blocks): Promise<PoolsUniswapV3 | undefined>;
 }
 
 export default PoolsUniswapV3Repository;

@@ -4,7 +4,7 @@ import {
 } from 'src/features/shared/blocks/core/entities/BlocksEthereum';
 
 interface BlocksEthereumRepository {
-  getBlocksFromTimestamp(
+  getByTimestamps(
     endpoint: string,
     timestamps: { t1D: number; t2D: number; t1W: number }
   ): Promise<BlocksEthereumFromTimestamp | undefined>;

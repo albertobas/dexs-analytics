@@ -5,7 +5,7 @@ import PairsUniswapV2Repository from 'src/features/uniswapV2/pairs/core/reposito
 import { UNISWAP_V2_PAIRS_TO_HIDE } from 'src/features/uniswapV2/pairs/utils/constants';
 
 class PairsUniswapV2DataSource implements PairsUniswapV2Repository {
-  public async getByAddresses(endpoint: string, blocks: Blocks): Promise<PairsUniswapV2 | undefined> {
+  public async getByBlocks(endpoint: string, blocks: Blocks): Promise<PairsUniswapV2 | undefined> {
     const client = new GraphQLClient(endpoint);
     const getQuery = (blocksEntity: Blocks) => {
       let pairsToHide = '';
