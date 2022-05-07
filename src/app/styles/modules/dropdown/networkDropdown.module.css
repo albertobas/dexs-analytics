@@ -33,7 +33,7 @@
   display: block;
   padding: 1rem;
   color: #fff;
-  @mixin $text-lg;
+  @mixin $text-base;
   text-transform: capitalize;
 }
 .container:hover,
