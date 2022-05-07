@@ -29,7 +29,11 @@ const LayoutSite = ({ children }: { children: React.ReactNode }) => {
       <div className={styles.containerOuter}>
         <div className={styles.containerInner}>
           <p className={styles.footerParagraph}>
-            This webpage does not track you. It is <a href={hrefRepo}>open source</a>.
+            This webpage does not track you. It is{' '}
+            <a href={hrefRepo} target="_blank" rel="nofollow noreferrer noopener">
+              open source
+            </a>
+            .
           </p>
         </div>
       </div>
