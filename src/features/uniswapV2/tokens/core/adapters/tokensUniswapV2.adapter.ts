@@ -8,13 +8,14 @@ const tokensUniswapV2Adapter = (dataRaw: TokensUniswapV2 | undefined): Tokens | 
       const tokensData: Record<string, Token> = {};
       const tokens = dataRaw[key as keyof typeof dataRaw];
       for (const token of tokens) {
+        const derivedETH = parseFloat(token.derivedETH);
         tokensData[token.id] = {
           name: token.name,
           symbol: token.symbol,
           address: token.id,
           volume: parseFloat(token.tradeVolumeUSD),
-          tvl: parseFloat(token.totalLiquidity),
-          derivedETH: parseFloat(token.derivedETH),
+          tvl: parseFloat(token.totalLiquidity) * derivedETH,
+          derivedETH,
         };
       }
       data[key as keyof typeof data] = tokensData;

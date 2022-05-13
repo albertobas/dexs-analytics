@@ -27,17 +27,14 @@ export const getFormattedTokensUniswapV3 = (tokens: Tokens, ethers: Ethers, netw
       volumeChange: volumeChange,
       volume1W: tokens.t1W[address] && volumeCurrent && volumeT1W ? volumeCurrent - volumeT1W : volumeCurrent,
       tvl: tokens.current[address].tvl,
-      tvlChange: tokens.t1D[address]
-        ? getPercentChange(
-            tokens.current[address].tvl * ethers.current.ethPrice,
-            tokens.t1D[address].tvl * ethers.t1D.ethPrice
-          )
-        : null,
+      tvlChange: tokens.t1D[address] ? getPercentChange(tokens.current[address].tvl, tokens.t1D[address].tvl) : null,
       price: price,
       priceChange: tokens.t1D[address]
         ? getPercentChange(price, ethers.t1D ? tokens.t1D[address].derivedETH * ethers.t1D.ethPrice : 0)
         : null,
-      priceChangeWeek: tokens.t1W[address] && ethers.t1W ? tokens.t1W[address].derivedETH * ethers.t1W.ethPrice : null,
+      // priceChange1W is not currently used in the user token table. However, the idea is to keep it in case a new
+      // component is implemented to show individual token stats
+      priceChange1W: tokens.t1W[address] && ethers.t1W ? tokens.t1W[address].derivedETH * ethers.t1W.ethPrice : null,
     };
   }
   tokensStateData[networkId] = {

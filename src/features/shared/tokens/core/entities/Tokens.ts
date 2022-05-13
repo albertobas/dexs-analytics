@@ -20,5 +20,5 @@ export type TokenExtended = Token & {
   tvlChange: number | null;
   price: number;
   priceChange: number | null;
-  priceChangeWeek: number | null;
+  priceChange1W: number | null;
 };
