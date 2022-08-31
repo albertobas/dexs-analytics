@@ -18,41 +18,40 @@ export function useUniswapV3Tokens() {
   const { blockchain, network } = useAppSelector((state) => state.protocol);
   const endpoint = useEndpoint();
   const endpointBlocks = useEndpointBlocks();
+  const shouldFetchTokens = shouldFetch(tokens, network);
 
   // create a callback function with the use cases
   const fetchTokens = useCallback(async () => {
     dispatch(setBlocks({ loading: true, error: false }));
-    dispatch(setTokensUniswapV3({ loading: true, error: false }));
+    shouldFetchTokens && dispatch(setTokensUniswapV3({ loading: true, error: false }));
     if (typeof endpoint !== 'undefined' && typeof endpointBlocks !== 'undefined' && blockchain && network) {
       const [t1D, t2D, t1W] = getTimestamps();
       const { error: errorBlock, data: blocks } = await queryBlocksEthereum(endpointBlocks, { t1D, t2D, t1W });
       if (errorBlock) {
         dispatch(setBlocks({ loading: false, error: true }));
-        dispatch(setTokensUniswapV3({ loading: false, error: true }));
+        shouldFetchTokens && dispatch(setTokensUniswapV3({ loading: false, error: true }));
       } else if (blocks) {
         const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
         dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
-        const [{ error: errorEthers, data: dataEthers }, { error: errorTokens, data: dataTokens }] = await Promise.all([
+        const [{ error: errorEthers, data: dataEthers }, tokensResponse] = await Promise.all([
           queryEthPrices(endpoint, blocks),
-          queryTokens(endpointBlocks, blocks),
+          shouldFetchTokens && queryTokens(endpoint, blocks),
         ]);
-        if (errorEthers || errorTokens) {
+        if (errorEthers || (tokensResponse && tokensResponse.error)) {
           dispatch(setTokensUniswapV3({ loading: false, error: true }));
-        } else if (dataTokens && dataEthers && network) {
-          const formattedData = getFormattedTokensUniswapV3(dataTokens, dataEthers, network);
+        } else if (tokensResponse && tokensResponse.data && dataEthers) {
+          const formattedData = getFormattedTokensUniswapV3(tokensResponse.data, dataEthers, network);
           dispatch(setTokensUniswapV3({ loading: false, error: false, data: formattedData }));
-        } else {
-          dispatch(setTokensUniswapV3({ loading: false, error: true }));
         }
       }
     }
-  }, [endpoint, endpointBlocks, dispatch, blockchain, network]);
+  }, [endpoint, endpointBlocks, dispatch, blockchain, network, shouldFetchTokens]);
 
   useEffect(() => {
-    if (shouldFetch(tokens, network)) {
+    if (shouldFetchTokens) {
       fetchTokens();
     }
-  }, [fetchTokens, tokens, network]);
+  }, [fetchTokens, shouldFetchTokens]);
 
   // return response and callback
   return tokens;

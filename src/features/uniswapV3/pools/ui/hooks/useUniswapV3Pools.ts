@@ -17,38 +17,37 @@ export function useUniswapV3Pools() {
   const { blockchain, network } = useAppSelector((state) => state.protocol);
   const endpoint = useEndpoint();
   const endpointBlocks = useEndpointBlocks();
+  const shouldFetchPools = shouldFetch(pools, network);
 
   // create a callback function with the use cases
   const fetchPools = useCallback(async () => {
     dispatch(setBlocks({ loading: true, error: false }));
-    dispatch(setPoolsUniswapV3({ loading: true, error: false }));
+    shouldFetchPools && dispatch(setPoolsUniswapV3({ loading: true, error: false }));
     if (typeof endpoint !== 'undefined' && typeof endpointBlocks !== 'undefined' && blockchain && network) {
       const [t1D, t2D, t1W] = getTimestamps();
       const { error: errorBlock, data: blocks } = await queryBlocksEthereum(endpointBlocks, { t1D, t2D, t1W });
       if (errorBlock) {
         dispatch(setBlocks({ loading: false, error: true }));
-        dispatch(setPoolsUniswapV3({ loading: false, error: true }));
+        shouldFetchPools && dispatch(setPoolsUniswapV3({ loading: false, error: true }));
       } else if (blocks) {
         const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
         dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
-        const { error, data } = await queryPools(endpoint, blocks);
-        if (error) {
+        const poolsResponse = shouldFetchPools && (await queryPools(endpoint, blocks));
+        if (poolsResponse && poolsResponse.error) {
           dispatch(setPoolsUniswapV3({ loading: false, error: true }));
-        } else if (data && network) {
-          const formattedData = getFormattedPoolsUniswapV3(data, network);
+        } else if (poolsResponse && poolsResponse.data && network) {
+          const formattedData = getFormattedPoolsUniswapV3(poolsResponse.data, network);
           dispatch(setPoolsUniswapV3({ loading: false, error: false, data: formattedData }));
-        } else {
-          dispatch(setPoolsUniswapV3({ loading: false, error: true }));
         }
       }
     }
-  }, [endpoint, endpointBlocks, dispatch, blockchain, network]);
+  }, [endpoint, endpointBlocks, dispatch, blockchain, network, shouldFetchPools]);
 
   useEffect(() => {
-    if (shouldFetch(pools, network)) {
+    if (shouldFetchPools) {
       fetchPools();
     }
-  }, [fetchPools, pools, network]);
+  }, [fetchPools, shouldFetchPools]);
 
   // return response and callback
   return pools;
