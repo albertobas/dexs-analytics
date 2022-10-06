@@ -5,7 +5,7 @@ const useEndpoint = () => {
   // get protocol
   const { blockchain, name, network } = useAppSelector((state) => state.protocol);
 
-  // return client
+  // return endpoint
   if (blockchain === 'ethereum') {
     if (name === 'uniswap-v3') {
       if (network === 'mainnet') return clients['uniswap-v3'].mainnet;
