@@ -1,4 +1,4 @@
-export const brand = 'Dexes Analytics';
+export const brand = 'DEXes Analytics';
 
 export const hrefRepo = 'https://github.com/albertobas/dexes-analytics';
 

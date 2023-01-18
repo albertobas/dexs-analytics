@@ -1,4 +1,4 @@
-# Dexes analytics
+# DEXes analytics
 
 [![Apache 2.0 licensed](https://img.shields.io/badge/License-Apache_2.0-yellow.svg)](https://github.com/albertobas/dexes-analytics/blob/main/LICENSE)
 
