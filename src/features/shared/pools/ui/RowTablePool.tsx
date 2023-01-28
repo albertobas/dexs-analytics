@@ -1,6 +1,6 @@
-import { PoolExtended } from 'src/features/shared/pools/entities/Pools';
+import { PoolExtended } from 'src/features/shared/pools/core/entities/Pools';
 import styles from 'src/features/shared/pools/styles/tablePool.module.css';
-import { formatAmountCurrency, getPercentage } from 'src/features/shared/utils/utils';
+import { formatAmountCurrency, getPercentage } from 'src/features/shared/utils/helpers';
 
 type Props = PoolExtended & {
   rowIdx: number;

@@ -4,7 +4,7 @@ import { TokenExtended } from 'src/features/shared/tokens/core/entities/Tokens';
 import RowTableToken from 'src/features/shared/tokens/ui/RowTableToken';
 import { dictTokens } from 'src/features/shared/tokens/utils';
 import styles from 'src/features/shared/tokens/styles/tableToken.module.css';
-import { sortTokens } from 'src/features/shared/utils/utils';
+import { sortTokens } from 'src/features/shared/utils/helpers';
 
 type Props = { data: TokenExtended[]; itemsPerPage: number; pageNum: number };
 

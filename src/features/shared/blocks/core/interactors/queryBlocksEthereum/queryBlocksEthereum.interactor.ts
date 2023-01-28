@@ -3,20 +3,16 @@ import blocksEthereumAdapter from 'src/features/shared/blocks/core/adapters/bloc
 import { Blocks } from 'src/features/shared/blocks/core/entities/Blocks';
 
 const queryBlocksEthereum =
-  (blocksRepository: BlocksEthereumRepository) =>
+  (repository: BlocksEthereumRepository) =>
   async (
     endpoint: string,
     timestamps: { t1D: number; t2D: number; t1W: number }
   ): Promise<{ error: boolean; data: Blocks | null }> => {
     try {
-      const [blocksFromTimestamp, blockCurrent] = await Promise.all([
-        blocksRepository.getByTimestamps(endpoint, timestamps),
-        blocksRepository.getCurrentBlock(endpoint),
-      ]);
-      const blocks = blockCurrent && blocksFromTimestamp ? { ...blockCurrent, ...blocksFromTimestamp } : null;
-      return blocks ? { error: false, data: blocksEthereumAdapter(blocks) } : { error: true, data: null };
+      const data = await repository.getBlocks(endpoint, timestamps);
+      return { error: false, data: blocksEthereumAdapter(data) };
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return { error: true, data: null };
     }
   };

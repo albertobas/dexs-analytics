@@ -1,4 +1,8 @@
-export interface BlocksEthereumFromTimestamp {
+export interface BlocksEthereum {
+  current: {
+    timestamp: string;
+    number: string;
+  }[];
   t1D: {
     timestamp: string;
     number: string;
@@ -8,12 +12,6 @@ export interface BlocksEthereumFromTimestamp {
     number: string;
   }[];
   t1W: {
-    timestamp: string;
-    number: string;
-  }[];
-}
-export interface BlocksEthereumCurrent {
-  current: {
     timestamp: string;
     number: string;
   }[];

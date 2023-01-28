@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import poolsUniswapV3SliceReducer from 'src/features/uniswapV3/pools/state/poolsUniswapV3Slice';
-import tokensUniswapV3SliceReducer from 'src/features/uniswapV3/tokens/state/tokensUniswapV3Slice';
+import poolsUniswapV3SliceReducer from 'src/features/uniswapV3/state/poolsUniswapV3Slice';
+import tokensUniswapV3SliceReducer from 'src/features/uniswapV3/state/tokensUniswapV3Slice';
 import protocolSlice from 'src/app/state/protocolSlice';
 import searchSliceReducer from 'src/app/state/searchSlice';
-import pairsUniswapV2SliceReducer from 'src/features/uniswapV2/pairs/state/pairsUniswapV2Slice';
-import tokensUniswapV2SliceReducer from 'src/features/uniswapV2/tokens/state/tokensUniswapV2Slice';
+import pairsUniswapV2SliceReducer from 'src/features/uniswapV2/state/pairsUniswapV2Slice';
+import tokensUniswapV2SliceReducer from 'src/features/uniswapV2/state/tokensUniswapV2Slice';
 import blocksSliceReducer from 'src/features/shared/blocks/state/blocksSlice';
 
 export const store = configureStore({

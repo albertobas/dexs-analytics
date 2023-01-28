@@ -13,27 +13,38 @@ const useProtocol = () => {
       protocolId,
       networkId,
     }: {
-      blockchainId: string | undefined;
-      protocolId: string | undefined;
-      networkId: string | undefined;
+      blockchainId: string | null;
+      protocolId: string | null;
+      networkId: string | null;
     }) => {
-      const blockchain: string | null | undefined =
-        blockchainId && Object.keys(dictProtocols).includes(blockchainId) ? blockchainId : undefined;
-      const name: string | null | undefined =
-        protocolId && blockchainId === 'ethereum'
-          ? Object.keys(dictProtocols.ethereum).includes(protocolId)
-            ? protocolId
-            : undefined
-          : undefined;
-
-      const network: string | null | undefined =
-        blockchainId && protocolId && networkId
-          ? blockchainId === 'ethereum' &&
-            dictProtocols.ethereum[protocolId as keyof typeof dictProtocols.ethereum].includes(networkId)
-            ? networkId
-            : undefined
-          : blockchainId && protocolId && 'mainnet';
-      dispatch(setProtocol({ blockchain, name, network }));
+      if (blockchainId && protocolId) {
+        if (
+          Object.keys(dictProtocols).includes(blockchainId) &&
+          Object.keys(dictProtocols.ethereum).includes(protocolId)
+        ) {
+          if (networkId) {
+            if (
+              blockchainId === 'ethereum' &&
+              dictProtocols.ethereum[protocolId as keyof typeof dictProtocols.ethereum].includes(networkId) &&
+              dictProtocols.ethereum[protocolId as keyof typeof dictProtocols.ethereum].includes(networkId)
+            ) {
+              dispatch(
+                setProtocol({ error: false, data: { blockchain: blockchainId, name: protocolId, network: networkId } })
+              );
+            } else {
+              dispatch(setProtocol({ error: true, data: null }));
+            }
+          } else {
+            dispatch(
+              setProtocol({ error: false, data: { blockchain: blockchainId, name: protocolId, network: 'mainnet' } })
+            );
+          }
+        } else {
+          dispatch(setProtocol({ error: true, data: null }));
+        }
+      } else {
+        dispatch(setProtocol({ error: true, data: null }));
+      }
     },
     [dispatch]
   );

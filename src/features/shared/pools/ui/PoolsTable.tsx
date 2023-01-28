@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Item } from 'src/features/shared/utils/core/entities/Item';
-import { PoolExtended } from 'src/features/shared/pools/entities/Pools';
+import { PoolExtended } from 'src/features/shared/pools/core/entities/Pools';
 import RowTablePool from 'src/features/shared/pools/ui/RowTablePool';
 import styles from 'src/features/shared/pools/styles/tablePool.module.css';
-import { dictPools, formatAmountPercentage, sortPools } from 'src/features/shared/utils/utils';
+import { dictPools, formatAmountPercentage, sortPools } from 'src/features/shared/utils/helpers';
 import { useAppSelector } from 'src/app/ui/hooks/useAppSelector';
+import FallbackMessage from 'src/shared/ui/FallbackMessage';
 
 type Props = { data: PoolExtended[]; itemsPerPage: number; pageNum: number };
 
@@ -33,7 +34,13 @@ const PoolsTable = ({ data, itemsPerPage, pageNum }: Props) => {
     [setSort, sort?.value]
   );
 
-  const name = useAppSelector((state) => state.protocol.name);
+  const protocol = useAppSelector((state) => state.protocol);
+
+  if (!protocol.data) {
+    return <FallbackMessage message="There has been a problem." />;
+  }
+
+  const { name } = protocol.data;
 
   const pool = name === 'uniswap-v2' ? dictPools.pair : dictPools.pool;
 

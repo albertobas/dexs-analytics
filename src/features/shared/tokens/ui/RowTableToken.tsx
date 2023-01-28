@@ -1,6 +1,6 @@
 import { TokenExtended } from 'src/features/shared/tokens/core/entities/Tokens';
 import styles from 'src/features/shared/tokens/styles/tableToken.module.css';
-import { formatAmountCurrency, getPercentage } from 'src/features/shared/utils/utils';
+import { formatAmountCurrency, getPercentage } from 'src/features/shared/utils/helpers';
 
 type Props = TokenExtended & {
   rowIdx: number;

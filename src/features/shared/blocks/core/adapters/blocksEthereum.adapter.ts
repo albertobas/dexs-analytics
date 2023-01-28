@@ -1,10 +1,7 @@
 import { Blocks } from 'src/features/shared/blocks/core/entities/Blocks';
-import {
-  BlocksEthereumCurrent,
-  BlocksEthereumFromTimestamp,
-} from 'src/features/shared/blocks/core/entities/BlocksEthereum';
+import { BlocksEthereum } from 'src/features/shared/blocks/core/entities/BlocksEthereum';
 
-const blocksEthereumAdapter = (data: BlocksEthereumCurrent & BlocksEthereumFromTimestamp): Blocks | null => {
+const blocksEthereumAdapter = (data: BlocksEthereum | undefined): Blocks | null => {
   if (data) {
     return {
       t1D: {

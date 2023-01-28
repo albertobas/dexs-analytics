@@ -22,3 +22,20 @@ export type TokenExtended = Token & {
   priceChange: number | null;
   priceChange1W: number | null;
 };
+
+export interface TokensObject {
+  [tokenId: string]: TokenExtended;
+}
+
+export interface TokensStateData {
+  [networkId: string]: {
+    tokens: TokensObject;
+    lastUpdated: number;
+  };
+}
+
+export interface TokensState {
+  loading: boolean | null;
+  error: boolean | null;
+  data?: TokensStateData | null;
+}

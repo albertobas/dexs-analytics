@@ -1,25 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface Protocol {
-  blockchain: string | null | undefined;
-  name: string | null | undefined;
-  network: string | null | undefined;
+  error: boolean | null;
+  data: {
+    blockchain: string;
+    name: string;
+    network: string;
+  } | null;
 }
 
 const initialState: Protocol = {
-  blockchain: null,
-  name: null,
-  network: null,
+  error: null,
+  data: null,
 };
 
 const protocolSlice = createSlice({
   name: 'protocol',
   initialState,
   reducers: {
-    setProtocol(state, { payload: { blockchain, name, network } }: PayloadAction<Protocol>) {
-      state.blockchain = blockchain;
-      state.name = name;
-      state.network = network;
+    setProtocol(state, { payload: { error, data } }: PayloadAction<Protocol>) {
+      state.error = error;
+      state.data = data ? data : null;
     },
   },
 });

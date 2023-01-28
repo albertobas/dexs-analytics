@@ -1,14 +1,10 @@
-import {
-  BlocksEthereumCurrent,
-  BlocksEthereumFromTimestamp,
-} from 'src/features/shared/blocks/core/entities/BlocksEthereum';
+import { BlocksEthereum } from 'src/features/shared/blocks/core/entities/BlocksEthereum';
 
 interface BlocksEthereumRepository {
-  getByTimestamps(
+  getBlocks(
     endpoint: string,
     timestamps: { t1D: number; t2D: number; t1W: number }
-  ): Promise<BlocksEthereumFromTimestamp | undefined>;
-  getCurrentBlock(endpoint: string): Promise<BlocksEthereumCurrent | undefined>;
+  ): Promise<BlocksEthereum | undefined>;
 }
 
 export default BlocksEthereumRepository;
