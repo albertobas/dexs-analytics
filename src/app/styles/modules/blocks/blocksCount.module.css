@@ -1,8 +1,10 @@
 .container {
-  @mixin $text-xs;
+  padding: 0 1.5rem;
   max-width: var(--max-width);
   margin: 1rem auto;
-  padding: 0 1.5rem;
+}
+.container > p {
+  @mixin $text-xs;
   color: var(--gray-300);
 }
 .blocks {
