@@ -4,9 +4,14 @@ import useIsVisible from 'src/shared/ui/hooks/useIsVisible';
 import { useAppSelector } from 'src/app/ui/hooks/useAppSelector';
 
 const NetworkDropdown = ({ options }: { options: string[] }) => {
-  const { blockchain, name, network } = useAppSelector((state) => state.protocol);
+  const { error, data } = useAppSelector((state) => state.protocol);
 
   const { isVisible, setIsVisible, ref } = useIsVisible();
+
+  if (error || !data) {
+    return <></>;
+  }
+  const { blockchain, network, name } = data;
   return (
     <div className={styles.container} ref={ref}>
       <button className={styles.title} onClick={() => setIsVisible((v) => !v)}>

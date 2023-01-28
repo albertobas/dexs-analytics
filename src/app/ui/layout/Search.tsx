@@ -5,7 +5,22 @@ import styles from 'src/app/styles/modules/layout/search.module.css';
 
 const Search = () => {
   const dispatch = useAppDispatch();
-  const name = useAppSelector((state) => state.protocol.name);
+  const { error, data } = useAppSelector((state) => state.protocol);
+
+  const query = useAppSelector((state) =>
+    data
+      ? data.name === 'uniswap-v2'
+        ? state.search.queryUniswapV2
+        : data.name === 'uniswap-v3'
+        ? state.search.queryUniswapV3
+        : null
+      : null
+  );
+
+  if (error || !data) {
+    return <></>;
+  }
+  const { name } = data;
 
   const handleSearch = (value: string) => {
     if (name === 'uniswap-v2') {
@@ -15,9 +30,6 @@ const Search = () => {
     }
   };
 
-  const query = useAppSelector((state) =>
-    name === 'uniswap-v2' ? state.search.queryUniswapV2 : 'uniswap-v3' ? state.search.queryUniswapV3 : null
-  );
   return (
     <div className={styles.search}>
       <input

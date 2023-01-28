@@ -10,24 +10,27 @@ import styles from 'src/app/styles/modules/layout/protocolOptions.module.css';
 
 const ProtocolOptions = () => {
   const dispatch = useAppDispatch();
-  const { blockchain, name, network } = useAppSelector((state) => state.protocol);
+  const { error, data } = useAppSelector((state) => state.protocol);
 
   const location = useLocation();
-
-  const pools = blockchain === 'ethereum' && name === 'uniswap-v2' ? 'pairs' : 'pools';
-  const path = network === 'mainnet' ? `/${blockchain}/${name}` : `/${blockchain}/${name}/${network}`;
 
   // run clearSearch() as a cleanup function
   useEffect(() => {
     return function clearSearch() {
-      if (name === 'uniswap-v2') {
+      if (data && data.name === 'uniswap-v2') {
         dispatch(setQueryUniswapV2(null));
-      } else if (name === 'uniswap-v3') {
+      } else if (data && data.name === 'uniswap-v3') {
         dispatch(setQueryUniswapV3(null));
       }
     };
-  }, [dispatch, name]);
+  }, [dispatch, data]);
 
+  if (error || !data) {
+    return <></>;
+  }
+  const { blockchain, name, network } = data;
+  const pools = blockchain === 'ethereum' && name === 'uniswap-v2' ? 'pairs' : 'pools';
+  const path = network === 'mainnet' ? `/${blockchain}/${name}` : `/${blockchain}/${name}/${network}`;
   const protocolsObject = blockchain && dictProtocols[blockchain as keyof typeof dictProtocols];
   const dropdownOptions = protocolsObject && (protocolsObject[name as keyof typeof protocolsObject] as string[]);
   const isOverviewSelected =
