@@ -1,9 +1,9 @@
 import { GraphQLClient } from 'graphql-request';
 import { BlocksEthereum } from 'src/features/shared/blocks/core/entities/BlocksEthereum';
-import BlocksEthereumRepository from 'src/features/shared/blocks/core/repositories/BlocksEthereum.repository';
+import BlocksRepository from 'src/features/shared/blocks/core/repositories/Blocks.repository';
 
-class BlocksDataSource implements BlocksEthereumRepository {
-  public async getBlocks(
+class BlocksDataSource implements BlocksRepository {
+  public async getBlocksEthereum(
     endpoint: string,
     timestamps: { t1D: number; t2D: number; t1W: number }
   ): Promise<BlocksEthereum | undefined> {
