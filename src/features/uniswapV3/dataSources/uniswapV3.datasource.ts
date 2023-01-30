@@ -220,7 +220,6 @@ class UniswapV3DataSource implements UniswapV3Repository {
         ethPriceUSD
       }
     `;
-
     return client.request(QUERY, {
       tokensToHide,
       poolsToHide,
@@ -309,7 +308,6 @@ class UniswapV3DataSource implements UniswapV3Repository {
         ethPriceUSD
       }
     `;
-
     return client.request(QUERY, {
       tokensToHide,
       blockT1D: blocks.t1D.number,
