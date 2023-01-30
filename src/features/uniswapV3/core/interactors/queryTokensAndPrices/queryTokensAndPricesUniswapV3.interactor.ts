@@ -8,7 +8,7 @@ const queryTokensAndPricesUniswapV3 =
   async (endpoint: string, blocks: Blocks): Promise<{ error: boolean; data: TokensAndPrices | null }> => {
     try {
       const data = await repository.getTokensAndPricesByBlocks(endpoint, blocks);
-      return { error: false, data: tokensAndPricesUniswapV3Adapter(data) };
+      return { error: false, data: data ? tokensAndPricesUniswapV3Adapter(data) : null };
     } catch (e) {
       // if an error is thrown, it will be catched and true will be passed in error for our ui logic.
       console.error(e);

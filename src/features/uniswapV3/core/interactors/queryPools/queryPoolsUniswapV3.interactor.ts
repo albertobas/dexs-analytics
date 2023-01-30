@@ -8,7 +8,7 @@ const queryPoolsUniswapV3 =
   async (endpoint: string, blocks: Blocks): Promise<{ error: boolean; data: Pools | null }> => {
     try {
       const data = await repository.getPoolsByBlocks(endpoint, blocks);
-      return { error: false, data: poolsUniswapV3Adapter(data) };
+      return { error: false, data: data ? poolsUniswapV3Adapter(data) : null };
     } catch (e) {
       // if an error is thrown, it will be catched and true will be passed in error for our ui logic.
       console.error(e);
