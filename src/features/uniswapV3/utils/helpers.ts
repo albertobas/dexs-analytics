@@ -1,12 +1,9 @@
 import { EtherPrices } from 'src/features/shared/ethers/core/entities/EtherPrices';
 import { PoolsObject, PoolsStateData } from 'src/features/shared/pools/core/entities/Pools';
 import { TokensObject, TokensStateData } from 'src/features/shared/tokens/core/entities/Tokens';
-import { Token, Tokens } from 'src/features/shared/tokens/core/entities/Tokens';
+import { Tokens } from 'src/features/shared/tokens/core/entities/Tokens';
 import { get2DayChange, getPercentChange, getTime } from 'src/features/shared/utils/helpers';
-import { Pool, Pools } from 'src/features/shared/pools/core/entities/Pools';
-import { TokenUniswapV3 } from 'src/features/uniswapV3/core/entities/TokensUniswapV3';
-import { EtherPriceUniswapV3 } from 'src/features/uniswapV3/core/entities/EthersUniswapV3';
-import { PoolUniswapV3 } from 'src/features/uniswapV3/core/entities/PoolsUniswapV3';
+import { Pools } from 'src/features/shared/pools/core/entities/Pools';
 
 export const getFormattedPoolsUniswapV3 = (pools: Pools, networkId: string): PoolsStateData => {
   const poolsObject: PoolsObject = {};
@@ -102,49 +99,3 @@ export const getFormattedTokensUniswapV3 = (
   };
   return tokensStateData;
 };
-
-export function getPoolFromPoolUniswapV3(pool: PoolUniswapV3): Pool {
-  return {
-    address: pool.id,
-    feeTier: parseInt(pool.feeTier),
-    volume: parseFloat(pool.volumeUSD),
-    token0: {
-      name: pool.token0.name,
-      symbol: pool.token0.symbol,
-      address: pool.token0.id,
-      decimals: parseFloat(pool.token0.decimals),
-    },
-    token1: {
-      name: pool.token1.name,
-      symbol: pool.token1.symbol,
-      address: pool.token1.id,
-      decimals: parseFloat(pool.token1.decimals),
-    },
-    tvl: parseFloat(pool.totalValueLockedUSD),
-  };
-}
-
-export function getTokenFromTokenUniswapV3(token: TokenUniswapV3): Token {
-  return {
-    name: token.name,
-    symbol: token.symbol,
-    address: token.id,
-    volume: parseFloat(token.volumeUSD),
-    tvl: parseFloat(token.totalValueLockedUSD),
-    derivedETH: parseFloat(token.derivedETH),
-  };
-}
-
-export function getEtherPriceFromEtherPriceUniswapV3(
-  current: EtherPriceUniswapV3[],
-  t1D: EtherPriceUniswapV3[],
-  t2D: EtherPriceUniswapV3[],
-  t1W: EtherPriceUniswapV3[]
-): EtherPrices {
-  return {
-    current: parseFloat(current[0].ethPriceUSD),
-    t1D: parseFloat(t1D[0].ethPriceUSD),
-    t2D: parseFloat(t2D[0].ethPriceUSD),
-    t1W: parseFloat(t1W[0].ethPriceUSD),
-  };
-}

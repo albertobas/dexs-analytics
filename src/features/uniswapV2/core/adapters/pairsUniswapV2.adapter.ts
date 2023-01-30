@@ -32,24 +32,3 @@ const pairsUniswapV2Adapter = (dataRaw: PairsUniswapV2): Pools => {
 };
 
 export default pairsUniswapV2Adapter;
-
-// import { Pool, Pools } from 'src/features/shared/pools/core/entities/Pools';
-// import { PairsUniswapV2 } from 'src/features/uniswapV2/core/entities/PairsUniswapV2';
-// import { getPoolFromPairUniswapV2 } from 'src/features/uniswapV2/utils/helpers';
-
-// const pairsUniswapV2Adapter = (dataRaw: PairsUniswapV2 | undefined): Pools | null => {
-//   if (dataRaw) {
-//     const data: Pools = { current: {}, t1D: {}, t2D: {}, t1W: {} };
-//     for (const key of Object.keys(dataRaw)) {
-//       const pairsData: Record<string, Pool> = {};
-//       const pairs = dataRaw[key as keyof typeof dataRaw];
-//       for (const pair of pairs) {
-//         pairsData[pair.id] = getPoolFromPairUniswapV2(pair);
-//       }
-//       data[key as keyof typeof data] = pairsData;
-//     }
-//     return data;
-//   } else return null;
-// };
-
-// export default pairsUniswapV2Adapter;

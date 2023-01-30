@@ -53,18 +53,10 @@ export function usePairsTokensUniswapV2() {
           } else {
             if (data) {
               const { pools, tokens, etherPrices } = data;
-              if (pools) {
-                const formattedPairs = getFormattedPairsUniswapV2(pools, network);
-                dispatch(setPairsUniswapV2({ loading: false, error: false, data: formattedPairs }));
-              } else {
-                dispatch(setPairsUniswapV2({ loading: false, error: false }));
-              }
-              if (tokens && etherPrices) {
-                const formattedTokens = getFormattedTokensUniswapV2(tokens, etherPrices, network);
-                dispatch(setTokensUniswapV2({ loading: false, error: false, data: formattedTokens }));
-              } else {
-                dispatch(setTokensUniswapV2({ loading: false, error: false }));
-              }
+              const formattedPairs = getFormattedPairsUniswapV2(pools, network);
+              const formattedTokens = getFormattedTokensUniswapV2(tokens, etherPrices, network);
+              dispatch(setPairsUniswapV2({ loading: false, error: false, data: formattedPairs }));
+              dispatch(setTokensUniswapV2({ loading: false, error: false, data: formattedTokens }));
             } else {
               dispatch(setPairsUniswapV2({ loading: false, error: false }));
               dispatch(setTokensUniswapV2({ loading: false, error: false }));

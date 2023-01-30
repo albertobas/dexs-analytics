@@ -3,7 +3,7 @@ import { PoolsTokensAndPrices } from 'src/features/shared/poolsTokensAndPrices/c
 import tokensAndPricesUniswapV2Adapter from 'src/features/uniswapV2/core/adapters/tokensAndPricesUniswapV2.adapter';
 import pairsUniswapV2Adapter from 'src/features/uniswapV2/core/adapters/pairsUniswapV2.adapter';
 
-const pairsTokensAndPricesUniswapV2Adapter = (dataRaw: PairsTokensAndPricesUniswapV2): PoolsTokensAndPrices | null => {
+const pairsTokensAndPricesUniswapV2Adapter = (dataRaw: PairsTokensAndPricesUniswapV2): PoolsTokensAndPrices => {
   const {
     pairs_current,
     pairs_t1D,

@@ -37,14 +37,12 @@ export function useTokensUniswapV2() {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
           const { error, data } = await queryTokensAndPricesUniswapV2(endpoint.data, blocks);
-          console.log({ error, data });
           if (error) {
             dispatch(setTokensUniswapV2({ loading: false, error: true }));
           } else {
             if (data) {
               const { tokens, etherPrices } = data;
-              const formattedData =
-                tokens && etherPrices ? getFormattedTokensUniswapV2(tokens, etherPrices, network) : null;
+              const formattedData = getFormattedTokensUniswapV2(tokens, etherPrices, network);
               dispatch(setTokensUniswapV2({ loading: false, error: false, data: formattedData }));
             } else {
               dispatch(setTokensUniswapV2({ loading: false, error: false }));

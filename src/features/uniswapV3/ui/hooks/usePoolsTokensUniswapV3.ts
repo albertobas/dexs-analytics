@@ -53,18 +53,10 @@ export function usePoolsTokensUniswapV3() {
           } else {
             if (data) {
               const { pools, tokens, etherPrices } = data;
-              if (pools) {
-                const formattedPools = getFormattedPoolsUniswapV3(pools, network);
-                dispatch(setPoolsUniswapV3({ loading: false, error: false, data: formattedPools }));
-              } else {
-                dispatch(setPoolsUniswapV3({ loading: false, error: false }));
-              }
-              if (tokens && etherPrices) {
-                const formattedTokens = getFormattedTokensUniswapV3(tokens, etherPrices, network);
-                dispatch(setTokensUniswapV3({ loading: false, error: false, data: formattedTokens }));
-              } else {
-                dispatch(setTokensUniswapV3({ loading: false, error: false }));
-              }
+              const formattedPools = getFormattedPoolsUniswapV3(pools, network);
+              const formattedTokens = getFormattedTokensUniswapV3(tokens, etherPrices, network);
+              dispatch(setPoolsUniswapV3({ loading: false, error: false, data: formattedPools }));
+              dispatch(setTokensUniswapV3({ loading: false, error: false, data: formattedTokens }));
             } else {
               dispatch(setPoolsUniswapV3({ loading: false, error: false }));
               dispatch(setTokensUniswapV3({ loading: false, error: false }));

@@ -2,6 +2,6 @@ import { EtherPrices } from 'src/features/shared/ethers/core/entities/EtherPrice
 import { Tokens } from 'src/features/shared/tokens/core/entities/Tokens';
 
 export interface TokensAndPrices {
-  tokens: Tokens | null;
-  etherPrices: EtherPrices | null;
+  tokens: Tokens;
+  etherPrices: EtherPrices;
 }

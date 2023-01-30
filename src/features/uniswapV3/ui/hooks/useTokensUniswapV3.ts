@@ -42,8 +42,7 @@ export function useTokensUniswapV3() {
           } else {
             if (data) {
               const { tokens, etherPrices } = data;
-              const formattedData =
-                tokens && etherPrices ? getFormattedTokensUniswapV3(tokens, etherPrices, network) : null;
+              const formattedData = getFormattedTokensUniswapV3(tokens, etherPrices, network);
               dispatch(setTokensUniswapV3({ loading: false, error: false, data: formattedData }));
             } else {
               dispatch(setTokensUniswapV3({ loading: false, error: false, data: null }));
