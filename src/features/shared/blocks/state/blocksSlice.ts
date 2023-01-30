@@ -1,5 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { BlocksState, BlocksStateData } from 'src/features/shared/blocks/core/entities/Blocks';
+import { Blocks } from 'src/features/shared/blocks/core/entities/Blocks';
+
+// interfaces
+export interface BlocksStateData {
+  [blockchainId: string]: {
+    [networkId: string]: {
+      blocks: Blocks;
+      lastUpdated: number;
+    };
+  };
+}
+
+export interface BlocksState {
+  loading: boolean | null;
+  error: boolean | null;
+  data?: BlocksStateData | null;
+}
 
 // initial state
 const initialState: BlocksState = {

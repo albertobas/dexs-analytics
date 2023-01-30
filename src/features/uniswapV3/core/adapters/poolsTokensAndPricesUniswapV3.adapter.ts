@@ -1,7 +1,7 @@
 import { PoolsTokensAndPricesUniswapV3 } from 'src/features/uniswapV3/core/entities/PoolsTokensAndPricesUniswapV3';
 import { PoolsTokensAndPrices } from 'src/features/shared/poolsTokensAndPrices/core/entities/PoolsTokensAndPrices';
-import poolsUniswapV3Adapter from './poolsUniswapV3.adapter';
-import tokensAndPricesUniswapV3Adapter from './tokensAndPricesUniswapV3.adapter';
+import poolsUniswapV3Adapter from 'src/features/uniswapV3/core/adapters/poolsUniswapV3.adapter';
+import tokensAndPricesUniswapV3Adapter from 'src/features/uniswapV3/core/adapters/tokensAndPricesUniswapV3.adapter';
 
 const poolsTokensAndPricesUniswapV3Adapter = (dataRaw: PoolsTokensAndPricesUniswapV3): PoolsTokensAndPrices => {
   const {
