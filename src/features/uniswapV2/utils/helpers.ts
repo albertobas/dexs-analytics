@@ -4,7 +4,6 @@ import { Tokens } from 'src/features/shared/tokens/core/entities/Tokens';
 import { PoolsObject, PoolsStateData } from 'src/features/shared/pools/core/entities/Pools';
 import { get2DayChange, getTime, getPercentChange } from 'src/features/shared/utils/helpers';
 import { TokensObject, TokensStateData } from 'src/features/shared/tokens/core/entities/Tokens';
-import { EtherPriceUniswapV2 } from 'src/features/uniswapV2/core/entities/EtherPricesUniswapV2';
 
 export const getFormattedPairsUniswapV2 = (pairs: Pools, networkId: string): PoolsStateData => {
   const poolsObject: PoolsObject = {};
