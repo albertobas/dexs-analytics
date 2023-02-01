@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
 import { Blocks } from 'src/features/shared/blocks/core/entities/Blocks';
 import UniswapV3Repository from 'src/features/uniswapV3/core/repositories/UniswapV3.repository';
-import { TokensAndPricesUniswapV3 } from 'src/features/uniswapV3/core/entities/TokensUniswapV3';
+import { TokensAndPricesUniswapV3 } from 'src/features/uniswapV3/core/entities/TokensAndPricesUniswapV3';
 import { UNISWAP_V3_TOKENS_TO_HIDE } from 'src/features/uniswapV3/utils/constants';
 import { PoolsUniswapV3 } from 'src/features/uniswapV3/core/entities/PoolsUniswapV3';
 import { UNISWAP_V3_POOLS_TO_HIDE } from 'src/features/uniswapV3/utils/constants';

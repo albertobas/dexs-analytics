@@ -1,6 +1,7 @@
 import { Token } from 'src/features/shared/tokens/core/entities/Tokens';
 import { TokensAndPrices } from 'src/features/shared/tokensAndPrices/core/entities/TokensAndPrices';
-import { TokensAndPricesUniswapV3 } from 'src/features/uniswapV3/core/entities/TokensUniswapV3';
+import { TokensAndPricesUniswapV3 } from 'src/features/uniswapV3/core/entities/TokensAndPricesUniswapV3';
+import etherPricesUniswapV3Adapter from 'src/features/uniswapV3/core/adapters/etherPricesUniswapV3.adapter';
 
 const tokensAndPricesUniswapV3Adapter = (dataRaw: TokensAndPricesUniswapV3): TokensAndPrices => {
   const tokens = { current: {}, t1D: {}, t2D: {}, t1W: {} };
@@ -21,12 +22,12 @@ const tokensAndPricesUniswapV3Adapter = (dataRaw: TokensAndPricesUniswapV3): Tok
     }
     tokens[key.replace('tokens_', '') as keyof typeof tokens] = tokensData;
   }
-  const etherPrices = {
-    current: parseFloat(price_current[0].ethPriceUSD),
-    t1D: parseFloat(price_t1D[0].ethPriceUSD),
-    t2D: parseFloat(price_t2D[0].ethPriceUSD),
-    t1W: parseFloat(price_t1W[0].ethPriceUSD),
-  };
+  const etherPrices = etherPricesUniswapV3Adapter({
+    current: price_current,
+    t1D: price_t1D,
+    t2D: price_t2D,
+    t1W: price_t1W,
+  });
   return { tokens, etherPrices };
 };
 

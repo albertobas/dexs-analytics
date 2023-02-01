@@ -1,4 +1,4 @@
-import { EtherPriceUniswapV3 } from 'src/features/uniswapV3/core/entities/EthersUniswapV3';
+import { EtherPriceUniswapV3 } from 'src/features/uniswapV3/core/entities/EtherPricesUniswapV3';
 
 export interface TokenUniswapV3 {
   id: string;

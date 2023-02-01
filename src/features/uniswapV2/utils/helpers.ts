@@ -103,17 +103,3 @@ export const getFormattedTokensUniswapV2 = (
   };
   return tokensStateData;
 };
-
-export function getEtherPriceFromEtherPriceUniswapV2(
-  current: EtherPriceUniswapV2[],
-  t1D: EtherPriceUniswapV2[],
-  t2D: EtherPriceUniswapV2[],
-  t1W: EtherPriceUniswapV2[]
-): EtherPrices {
-  return {
-    current: parseFloat(current[0].ethPrice),
-    t1D: parseFloat(t1D[0].ethPrice),
-    t2D: parseFloat(t2D[0].ethPrice),
-    t1W: parseFloat(t1W[0].ethPrice),
-  };
-}

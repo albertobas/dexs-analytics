@@ -1,6 +1,6 @@
 import { Blocks } from 'src/features/shared/blocks/core/entities/Blocks';
 import { PoolsUniswapV3 } from 'src/features/uniswapV3/core/entities/PoolsUniswapV3';
-import { TokensAndPricesUniswapV3 } from 'src/features/uniswapV3/core/entities/TokensUniswapV3';
+import { TokensAndPricesUniswapV3 } from 'src/features/uniswapV3/core/entities/TokensAndPricesUniswapV3';
 import { PoolsTokensAndPricesUniswapV3 } from 'src/features/uniswapV3/core/entities/PoolsTokensAndPricesUniswapV3';
 
 interface UniswapV3Repository {

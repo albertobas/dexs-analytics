@@ -1,6 +1,6 @@
-import { EtherPriceUniswapV3 } from 'src/features/uniswapV3/core/entities/EthersUniswapV3';
+import { EtherPriceUniswapV3 } from 'src/features/uniswapV3/core/entities/EtherPricesUniswapV3';
 import { PoolUniswapV3 } from 'src/features/uniswapV3/core/entities/PoolsUniswapV3';
-import { TokenUniswapV3 } from 'src/features/uniswapV3/core/entities/TokensUniswapV3';
+import { TokenUniswapV3 } from 'src/features/uniswapV3/core/entities/TokensAndPricesUniswapV3';
 
 export interface PoolsTokensAndPricesUniswapV3 {
   pools_current: PoolUniswapV3[];
