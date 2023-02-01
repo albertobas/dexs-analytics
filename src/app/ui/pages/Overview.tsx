@@ -13,20 +13,11 @@ const Overview = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // update protocol
+  // get protocol data
   const { blockchainId, protocolId, networkId } = useParams();
-  const {
-    protocol: { error, data },
-    updateProtocol,
-  } = useProtocol();
 
-  useEffect(() => {
-    updateProtocol({
-      blockchainId: blockchainId ?? null,
-      protocolId: protocolId ?? null,
-      networkId: networkId ?? null,
-    });
-  }, [blockchainId, protocolId, networkId, updateProtocol]);
+  // update protocol
+  const { error, data } = useProtocol(blockchainId, protocolId, networkId);
 
   if (error) {
     return <FallbackMessage message="There has been a problem." />;

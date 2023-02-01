@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import styles from 'src/app/styles/modules/dropdown/networkDropdown.module.css';
 import useIsVisible from 'src/shared/ui/hooks/useIsVisible';
 import { useAppSelector } from 'src/app/ui/hooks/useAppSelector';
+import { ProtocolType } from 'src/app/utils/interfaces';
 
-const NetworkDropdown = ({ options }: { options: string[] }) => {
+const NetworkDropdown = ({ options }: { options: ProtocolType[] }) => {
   const { error, data } = useAppSelector((state) => state.protocol);
 
   const { isVisible, setIsVisible, ref } = useIsVisible();

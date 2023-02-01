@@ -7,6 +7,7 @@ import { useAppSelector } from 'src/app/ui/hooks/useAppSelector';
 import Search from 'src/app/ui/layout/Search';
 import { dictProtocols } from 'src/app/utils/constants';
 import styles from 'src/app/styles/modules/layout/protocolOptions.module.css';
+import { BlockchainType, ProtocolType } from 'src/app/utils/interfaces';
 
 const ProtocolOptions = () => {
   const dispatch = useAppDispatch();
@@ -31,16 +32,18 @@ const ProtocolOptions = () => {
   const { blockchain, name, network } = data;
   const pools = blockchain === 'ethereum' && name === 'uniswap-v2' ? 'pairs' : 'pools';
   const path = network === 'mainnet' ? `/${blockchain}/${name}` : `/${blockchain}/${name}/${network}`;
-  const protocolsObject = blockchain && dictProtocols[blockchain as keyof typeof dictProtocols];
-  const dropdownOptions = protocolsObject && (protocolsObject[name as keyof typeof protocolsObject] as string[]);
+  const protocolsObject = blockchain ? dictProtocols[blockchain as BlockchainType] : null;
+  const dropdownOptions = protocolsObject
+    ? (protocolsObject[name as keyof typeof protocolsObject] as ProtocolType[])
+    : null;
   const isOverviewSelected =
     !location.pathname.includes('tokens') &&
     !location.pathname.includes('pairs') &&
     !location.pathname.includes('pools');
   const isPoolsSelected = location.pathname.includes('pairs') || location.pathname.includes('pools');
   const isTokensSelected = location.pathname.includes('tokens');
+
   return (
-    //
     <>
       {blockchain && name && network && (
         <div className={styles.containerOuter}>

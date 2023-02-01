@@ -13,26 +13,16 @@ const Tokens = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // update protocol
+  // get protocol data
   const { blockchainId, protocolId, networkId } = useParams();
-  const {
-    protocol: { error, data },
-    updateProtocol,
-  } = useProtocol();
 
-  useEffect(() => {
-    updateProtocol({
-      blockchainId: blockchainId ?? null,
-      protocolId: protocolId ?? null,
-      networkId: networkId ?? null,
-    });
-  }, [blockchainId, protocolId, networkId, updateProtocol]);
+  // update protocol
+  const { error, data } = useProtocol(blockchainId, protocolId, networkId);
 
   if (error) {
     return <FallbackMessage message="There has been a problem." />;
   }
   if (error === false) {
-    // Return 404 if protocol unknown
     if (data) {
       const { name } = data;
       // to avoid rendering a wrong component before updateProtocol changes the state, I match both the params
@@ -49,6 +39,7 @@ const Tokens = () => {
         </>
       );
     }
+    // if protocol is unknown return 404
     return <NotFound />;
   }
   return <FallbackMessage message="Loading..." />;
