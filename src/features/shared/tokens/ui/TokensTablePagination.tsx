@@ -64,35 +64,3 @@ const TokensTablePagination = ({ loading, error, data }: TokensState) => {
 };
 
 export default TokensTablePagination;
-
-// return (
-//   <div className={styles.containerOuter}>
-//     <div className={styles.containerInner}>
-//       <div className={styles.table}>
-//         {error ? (
-//           <FallbackMessage message="There has been a problem." />
-//         ) : error === false ? (
-//           tokenData ? (
-//             protocolState.data ? (
-//               <>
-//                 <TokensTable data={tokenData} itemsPerPage={itemsPerPage} pageNum={pageNum} />
-//                 <Pagination
-//                   dataLength={tokenData.length}
-//                   itemsPerPage={itemsPerPage}
-//                   currentPage={pageNum}
-//                   setCurrentPage={setPageNum}
-//                 />
-//               </>
-//             ) : (
-//               <FallbackMessage message="There has been a problem." />
-//             )
-//           ) : (
-//             <FallbackMessage message="No info available" />
-//           )
-//         ) : (
-//           <FallbackMessage message="Loading..." />
-//         )}
-//       </div>
-//     </div>
-//   </div>
-// );
