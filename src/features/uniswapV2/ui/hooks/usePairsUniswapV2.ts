@@ -3,12 +3,12 @@ import { useAppDispatch } from 'src/app/ui/hooks/useAppDispatch';
 import { useAppSelector } from 'src/app/ui/hooks/useAppSelector';
 import { setPairsUniswapV2 } from 'src/features/uniswapV2/state/pairsUniswapV2Slice';
 import useEndpoint from 'src/app/ui/hooks/useEndpoint';
-import queryPairsUniswapV2 from 'src/features/uniswapV2/core/interactors/queryPairs';
+import { queryPairsUniswapV2WithDep } from 'src/features/uniswapV2/core/interactors';
 import { getTimestamps, shouldFetch } from 'src/features/shared/utils/helpers';
 import { getFormattedPairsUniswapV2 } from 'src/features/uniswapV2/utils/helpers';
 import useEndpointBlocks from 'src/app/ui/hooks/useEndpointBlocks';
 import { setBlocks } from 'src/features/shared/blocks/state/blocksSlice';
-import queryBlocksEthereum from 'src/features/shared/blocks/core/interactors/queryBlocksEthereum';
+import queryBlocksEthereumWithDep from 'src/features/shared/blocks/core/interactors';
 import { getFormattedBlocks } from 'src/features/shared/blocks/ui/utils/helpers';
 
 export function usePairsUniswapV2() {
@@ -29,14 +29,18 @@ export function usePairsUniswapV2() {
       if (protocolState.data && endpoint.data && endpointBlocks.data) {
         const { blockchain, network } = protocolState.data;
         const [t1D, t2D, t1W] = getTimestamps();
-        const { error: errorBlock, data: blocks } = await queryBlocksEthereum(endpointBlocks.data, { t1D, t2D, t1W });
+        const { error: errorBlock, data: blocks } = await queryBlocksEthereumWithDep(endpointBlocks.data, {
+          t1D,
+          t2D,
+          t1W,
+        });
         if (errorBlock) {
           dispatch(setBlocks({ loading: false, error: true }));
           dispatch(setPairsUniswapV2({ loading: false, error: true }));
         } else if (blocks) {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
-          const { error, data } = await queryPairsUniswapV2(endpoint.data, blocks);
+          const { error, data } = await queryPairsUniswapV2WithDep(endpoint.data, blocks);
           if (error) {
             dispatch(setPairsUniswapV2({ loading: false, error: true }));
           } else {

@@ -3,8 +3,8 @@ import { useAppDispatch } from 'src/app/ui/hooks/useAppDispatch';
 import { useAppSelector } from 'src/app/ui/hooks/useAppSelector';
 import useEndpoint from 'src/app/ui/hooks/useEndpoint';
 import useEndpointBlocks from 'src/app/ui/hooks/useEndpointBlocks';
-import queryBlocksEthereum from 'src/features/shared/blocks/core/interactors/queryBlocksEthereum';
-import queryPoolsTokensAndPricesUniswapV3 from 'src/features/uniswapV3/core/interactors/queryPoolsTokensAndPrices';
+import queryBlocksEthereumWithDep from 'src/features/shared/blocks/core/interactors';
+import { queryPoolsTokensAndPricesUniswapV3WithDep } from 'src/features/uniswapV3/core/interactors';
 import { setPoolsUniswapV3 } from 'src/features/uniswapV3/state/poolsUniswapV3Slice';
 import { setBlocks } from 'src/features/shared/blocks/state/blocksSlice';
 import { setTokensUniswapV3 } from 'src/features/uniswapV3/state/tokensUniswapV3Slice';
@@ -38,7 +38,11 @@ export function usePoolsTokensUniswapV3() {
       if (protocolState.data && endpoint.data && endpointBlocks.data) {
         const { blockchain, network } = protocolState.data;
         const [t1D, t2D, t1W] = getTimestamps();
-        const { error: errorBlock, data: blocks } = await queryBlocksEthereum(endpointBlocks.data, { t1D, t2D, t1W });
+        const { error: errorBlock, data: blocks } = await queryBlocksEthereumWithDep(endpointBlocks.data, {
+          t1D,
+          t2D,
+          t1W,
+        });
         if (errorBlock) {
           dispatch(setBlocks({ loading: false, error: true }));
           dispatch(setPoolsUniswapV3({ loading: false, error: true }));
@@ -46,7 +50,7 @@ export function usePoolsTokensUniswapV3() {
         } else if (blocks) {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
-          const { error, data } = await queryPoolsTokensAndPricesUniswapV3(endpoint.data, blocks);
+          const { error, data } = await queryPoolsTokensAndPricesUniswapV3WithDep(endpoint.data, blocks);
           if (error) {
             dispatch(setPoolsUniswapV3({ loading: false, error: true }));
             dispatch(setTokensUniswapV3({ loading: false, error: true }));

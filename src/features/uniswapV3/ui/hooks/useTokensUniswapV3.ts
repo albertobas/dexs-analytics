@@ -3,8 +3,8 @@ import { useAppDispatch } from 'src/app/ui/hooks/useAppDispatch';
 import { useAppSelector } from 'src/app/ui/hooks/useAppSelector';
 import useEndpoint from 'src/app/ui/hooks/useEndpoint';
 import useEndpointBlocks from 'src/app/ui/hooks/useEndpointBlocks';
-import queryBlocksEthereum from 'src/features/shared/blocks/core/interactors/queryBlocksEthereum';
-import queryTokensAndPricesUniswapV3 from 'src/features/uniswapV3/core/interactors/queryTokensAndPrices';
+import queryBlocksEthereumWithDep from 'src/features/shared/blocks/core/interactors';
+import { queryTokensAndPricesUniswapV3WithDep } from 'src/features/uniswapV3/core/interactors';
 import { setBlocks } from 'src/features/shared/blocks/state/blocksSlice';
 import { setTokensUniswapV3 } from 'src/features/uniswapV3/state/tokensUniswapV3Slice';
 import { getFormattedBlocks } from 'src/features/shared/blocks/ui/utils/helpers';
@@ -29,14 +29,18 @@ export function useTokensUniswapV3() {
       if (protocolState.data && endpoint.data && endpointBlocks.data) {
         const { blockchain, network } = protocolState.data;
         const [t1D, t2D, t1W] = getTimestamps();
-        const { error: errorBlock, data: blocks } = await queryBlocksEthereum(endpointBlocks.data, { t1D, t2D, t1W });
+        const { error: errorBlock, data: blocks } = await queryBlocksEthereumWithDep(endpointBlocks.data, {
+          t1D,
+          t2D,
+          t1W,
+        });
         if (errorBlock) {
           dispatch(setBlocks({ loading: false, error: true, data: null }));
           dispatch(setTokensUniswapV3({ loading: false, error: true, data: null }));
         } else if (blocks) {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
-          const { error, data } = await queryTokensAndPricesUniswapV3(endpoint.data, blocks);
+          const { error, data } = await queryTokensAndPricesUniswapV3WithDep(endpoint.data, blocks);
           if (error) {
             dispatch(setTokensUniswapV3({ loading: false, error: true, data: null }));
           } else {
