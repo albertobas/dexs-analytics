@@ -29,13 +29,14 @@ const PoolsTablePagination = ({ loading, error, data }: PoolsState) => {
       const pools = Object.values(data[protocolState.data.network].pools).map((p: PoolExtended) => p);
       if (query) return searchPools(pools, query);
       else return pools;
-    } else return [];
-  }, [data, protocolState, query]);
+    } else return null;
+  }, [data, protocolState.data, query]);
 
   // pagination
   const itemsPerPage = 10;
   const [pageNum, setPageNum] = useState<number>(0);
 
+  console.log('poolData: ', poolData);
   return (
     <div className={styles.containerOuter}>
       <div className={styles.containerInner}>

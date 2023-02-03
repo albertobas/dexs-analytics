@@ -78,8 +78,8 @@ export const get2DayChange = (valueCurrent: number, value1D: number, value2D: nu
   return [currentChange, percentChange];
 };
 
-export function searchPools(pools: PoolExtended[], query: string): PoolExtended[] {
-  return pools.filter(
+export function searchPools(pools: PoolExtended[], query: string): PoolExtended[] | null {
+  const poolsArray = pools.filter(
     (pool) =>
       pool.token0.name.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
       pool.token0.symbol.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
@@ -89,15 +89,17 @@ export function searchPools(pools: PoolExtended[], query: string): PoolExtended[
       pool.token1.address.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
       (pool.token0.symbol + '/' + pool.token1.symbol).toLowerCase().indexOf(query.toLowerCase()) > -1
   );
+  return poolsArray.length ? poolsArray : null;
 }
 
-export function searchTokens(tokens: TokenExtended[], query: string): TokenExtended[] {
-  return tokens.filter(
+export function searchTokens(tokens: TokenExtended[], query: string): TokenExtended[] | null {
+  const tokensArray = tokens.filter(
     (token) =>
       token.name.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
       token.symbol.toLowerCase().indexOf(query.toLowerCase()) > -1 ||
       token.address.toLowerCase().indexOf(query.toLowerCase()) > -1
   );
+  return tokensArray.length ? tokensArray : null;
 }
 
 export const sortTokens = (data: TokenExtended[], sortValue: string | undefined, reverse: boolean): TokenExtended[] => {

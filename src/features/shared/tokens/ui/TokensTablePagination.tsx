@@ -29,7 +29,7 @@ const TokensTablePagination = ({ loading, error, data }: TokensState) => {
       const tokens = Object.values(data[protocolState.data.network].tokens).map((p: TokenExtended) => p);
       if (query) return searchTokens(tokens, query);
       else return tokens;
-    } else return [];
+    } else return null;
   }, [data, query, protocolState.data]);
 
   // pagination
