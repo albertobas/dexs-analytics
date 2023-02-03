@@ -36,7 +36,6 @@ const PoolsTablePagination = ({ loading, error, data }: PoolsState) => {
   const itemsPerPage = 10;
   const [pageNum, setPageNum] = useState<number>(0);
 
-  console.log('poolData: ', poolData);
   return (
     <div className={styles.containerOuter}>
       <div className={styles.containerInner}>
