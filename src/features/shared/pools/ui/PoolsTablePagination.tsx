@@ -56,7 +56,7 @@ const PoolsTablePagination = ({ loading, error, data }: PoolsState) => {
               />
             </>
           ) : (
-            <FallbackMessage message="No info available" />
+            <FallbackMessage message="No info available." />
           )}
         </div>
       </div>

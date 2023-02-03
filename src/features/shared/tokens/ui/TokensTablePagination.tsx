@@ -55,7 +55,7 @@ const TokensTablePagination = ({ loading, error, data }: TokensState) => {
               />
             </>
           ) : (
-            <FallbackMessage message="No info available" />
+            <FallbackMessage message="No info available." />
           )}
         </div>
       </div>
