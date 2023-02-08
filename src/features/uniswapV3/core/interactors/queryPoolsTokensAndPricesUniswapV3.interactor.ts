@@ -10,7 +10,6 @@ const queryPoolsTokensAndPricesUniswapV3 =
       const data = await repository.getPoolsTokensAndPricesByBlocks(endpoint, blocks);
       return { error: false, data: data ? poolsTokensAndPricesUniswapV3Adapter(data) : null };
     } catch (e) {
-      // if an error is thrown, it will be catched and true will be passed in error for our ui logic.
       console.error(e);
       return { error: true, data: null };
     }

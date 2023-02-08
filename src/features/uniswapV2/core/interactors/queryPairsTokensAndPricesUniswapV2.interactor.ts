@@ -11,7 +11,6 @@ const queryPairsTokensAndPricesUniswapV2 =
       const adaptedData = data ? pairsTokensAndPricesUniswapV2Adapter(data) : null;
       return { error: false, data: adaptedData };
     } catch (e) {
-      // if an error is thrown, it will be catched and true will be passed in error for our ui logic.
       console.error(e);
       return { error: true, data: null };
     }
