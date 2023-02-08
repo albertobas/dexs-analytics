@@ -2,7 +2,7 @@ import Pagination from 'src/features/shared/pagination/ui/Pagination';
 import FallbackMessage from 'src/shared/ui/FallbackMessage';
 import styles from 'src/features/shared/pools/styles/tablePool.module.css';
 import { useAppSelector } from 'src/app/ui/hooks/useAppSelector';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { PoolsState } from 'src/features/shared/pools/core/entities/Pools';
 import { PoolExtended } from 'src/features/shared/pools/core/entities/Pools';
 import { searchPools } from 'src/features/shared/utils/helpers';
@@ -31,6 +31,13 @@ const PoolsTablePagination = ({ loading, error, data }: PoolsState) => {
       else return pools;
     } else return null;
   }, [data, protocolState.data, query]);
+
+  // set page 0 if searching pools
+  useEffect(() => {
+    if (query) {
+      setPageNum(0);
+    }
+  }, [query]);
 
   // pagination
   const itemsPerPage = 10;

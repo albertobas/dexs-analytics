@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Pagination from 'src/features/shared/pagination/ui/Pagination';
 import { TokensState } from 'src/features/shared/tokens/core/entities/Tokens';
 import { TokenExtended } from 'src/features/shared/tokens/core/entities/Tokens';
@@ -31,6 +31,13 @@ const TokensTablePagination = ({ loading, error, data }: TokensState) => {
       else return tokens;
     } else return null;
   }, [data, query, protocolState.data]);
+
+  // set page 0 if searching tokens
+  useEffect(() => {
+    if (query) {
+      setPageNum(0);
+    }
+  }, [query]);
 
   // pagination
   const itemsPerPage = 10;
