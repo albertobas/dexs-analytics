@@ -51,21 +51,20 @@ export function usePairsTokensUniswapV2() {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
           const { error, data } = await queryPairsTokensAndPricesUniswapV2WithDep(endpoint.data, blocks);
-          if (error) {
-            dispatch(setPairsUniswapV2({ loading: false, error: true }));
-            dispatch(setTokensUniswapV2({ loading: false, error: true }));
-          } else {
-            if (data) {
-              const { pools, tokens, etherPrices } = data;
-              const formattedPairs = getFormattedPairsUniswapV2(pools, network);
-              const formattedTokens = getFormattedTokensUniswapV2(tokens, etherPrices, network);
-              dispatch(setPairsUniswapV2({ loading: false, error: false, data: formattedPairs }));
-              dispatch(setTokensUniswapV2({ loading: false, error: false, data: formattedTokens }));
-            } else {
-              dispatch(setPairsUniswapV2({ loading: false, error: false }));
-              dispatch(setTokensUniswapV2({ loading: false, error: false }));
-            }
-          }
+          dispatch(
+            setPairsUniswapV2({
+              loading: false,
+              error,
+              data: data ? getFormattedPairsUniswapV2(data.pools, network) : null,
+            })
+          );
+          dispatch(
+            setTokensUniswapV2({
+              loading: false,
+              error,
+              data: data ? getFormattedTokensUniswapV2(data.tokens, data.etherPrices, network) : null,
+            })
+          );
         }
       } else {
         dispatch(setPairsUniswapV2({ loading: false, error: true }));

@@ -41,16 +41,9 @@ export function usePairsUniswapV2() {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
           const { error, data } = await queryPairsUniswapV2WithDep(endpoint.data, blocks);
-          if (error) {
-            dispatch(setPairsUniswapV2({ loading: false, error: true }));
-          } else {
-            if (data) {
-              const formattedData = getFormattedPairsUniswapV2(data, network);
-              dispatch(setPairsUniswapV2({ loading: false, error: false, data: formattedData }));
-            } else {
-              dispatch(setPairsUniswapV2({ loading: false, error: false }));
-            }
-          }
+          dispatch(
+            setPairsUniswapV2({ loading: false, error, data: data ? getFormattedPairsUniswapV2(data, network) : null })
+          );
         }
       } else {
         dispatch(setPairsUniswapV2({ loading: false, error: true }));

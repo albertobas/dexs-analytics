@@ -41,17 +41,13 @@ export function useTokensUniswapV3() {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
           const { error, data } = await queryTokensAndPricesUniswapV3WithDep(endpoint.data, blocks);
-          if (error) {
-            dispatch(setTokensUniswapV3({ loading: false, error: true, data: null }));
-          } else {
-            if (data) {
-              const { tokens, etherPrices } = data;
-              const formattedData = getFormattedTokensUniswapV3(tokens, etherPrices, network);
-              dispatch(setTokensUniswapV3({ loading: false, error: false, data: formattedData }));
-            } else {
-              dispatch(setTokensUniswapV3({ loading: false, error: false, data: null }));
-            }
-          }
+          dispatch(
+            setTokensUniswapV3({
+              loading: false,
+              error,
+              data: data ? getFormattedTokensUniswapV3(data.tokens, data.etherPrices, network) : null,
+            })
+          );
         }
       } else {
         dispatch(setTokensUniswapV3({ loading: false, error: true, data: null }));

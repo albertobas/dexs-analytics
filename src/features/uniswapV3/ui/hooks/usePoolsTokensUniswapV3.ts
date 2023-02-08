@@ -51,21 +51,20 @@ export function usePoolsTokensUniswapV3() {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
           const { error, data } = await queryPoolsTokensAndPricesUniswapV3WithDep(endpoint.data, blocks);
-          if (error) {
-            dispatch(setPoolsUniswapV3({ loading: false, error: true }));
-            dispatch(setTokensUniswapV3({ loading: false, error: true }));
-          } else {
-            if (data) {
-              const { pools, tokens, etherPrices } = data;
-              const formattedPools = getFormattedPoolsUniswapV3(pools, network);
-              const formattedTokens = getFormattedTokensUniswapV3(tokens, etherPrices, network);
-              dispatch(setPoolsUniswapV3({ loading: false, error: false, data: formattedPools }));
-              dispatch(setTokensUniswapV3({ loading: false, error: false, data: formattedTokens }));
-            } else {
-              dispatch(setPoolsUniswapV3({ loading: false, error: false }));
-              dispatch(setTokensUniswapV3({ loading: false, error: false }));
-            }
-          }
+          dispatch(
+            setPoolsUniswapV3({
+              loading: false,
+              error,
+              data: data ? getFormattedPoolsUniswapV3(data.pools, network) : null,
+            })
+          );
+          dispatch(
+            setTokensUniswapV3({
+              loading: false,
+              error,
+              data: data ? getFormattedTokensUniswapV3(data.tokens, data.etherPrices, network) : null,
+            })
+          );
         }
       } else {
         dispatch(setPoolsUniswapV3({ loading: false, error: true }));

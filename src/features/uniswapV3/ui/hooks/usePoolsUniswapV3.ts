@@ -42,16 +42,9 @@ export function usePoolsUniswapV3() {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
           const { error, data } = await queryPoolsUniswapV3WithDep(endpoint.data, blocks);
-          if (error) {
-            dispatch(setPoolsUniswapV3({ loading: false, error: true }));
-          } else {
-            if (data) {
-              const formattedData = getFormattedPoolsUniswapV3(data, network);
-              dispatch(setPoolsUniswapV3({ loading: false, error: false, data: formattedData }));
-            } else {
-              dispatch(setPoolsUniswapV3({ loading: false, error: false }));
-            }
-          }
+          dispatch(
+            setPoolsUniswapV3({ loading: false, error, data: data ? getFormattedPoolsUniswapV3(data, network) : null })
+          );
         }
       } else {
         dispatch(setPoolsUniswapV3({ loading: false, error: true }));

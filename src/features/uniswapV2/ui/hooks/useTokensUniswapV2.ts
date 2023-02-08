@@ -41,17 +41,24 @@ export function useTokensUniswapV2() {
           const formattedBlocks = getFormattedBlocks(blocks, blockchain, network);
           dispatch(setBlocks({ loading: false, error: false, data: formattedBlocks }));
           const { error, data } = await queryTokensAndPricesUniswapV2WithDep(endpoint.data, blocks);
-          if (error) {
-            dispatch(setTokensUniswapV2({ loading: false, error: true }));
-          } else {
-            if (data) {
-              const { tokens, etherPrices } = data;
-              const formattedData = getFormattedTokensUniswapV2(tokens, etherPrices, network);
-              dispatch(setTokensUniswapV2({ loading: false, error: false, data: formattedData }));
-            } else {
-              dispatch(setTokensUniswapV2({ loading: false, error: false }));
-            }
-          }
+          // if (error) {
+          //   dispatch(setTokensUniswapV2({ loading: false, error: true }));
+          // } else {
+          //   if (data) {
+          //     const { tokens, etherPrices } = data;
+          //     const formattedData = getFormattedTokensUniswapV2(tokens, etherPrices, network);
+          //     dispatch(setTokensUniswapV2({ loading: false, error: false, data: formattedData }));
+          //   } else {
+          //     dispatch(setTokensUniswapV2({ loading: false, error: false }));
+          //   }
+          // }
+          dispatch(
+            setTokensUniswapV2({
+              loading: false,
+              error,
+              data: data ? getFormattedTokensUniswapV2(data.tokens, data.etherPrices, network) : null,
+            })
+          );
         }
       } else {
         dispatch(setTokensUniswapV2({ loading: false, error: true }));
