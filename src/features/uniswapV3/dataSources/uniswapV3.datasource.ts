@@ -234,10 +234,6 @@ class UniswapV3DataSource implements UniswapV3Repository {
     blocks: Blocks
   ): Promise<TokensAndPricesUniswapV3 | undefined> {
     const client = new GraphQLClient(endpoint);
-    let poolsToHide = '';
-    UNISWAP_V3_POOLS_TO_HIDE.map((address) => {
-      return (poolsToHide += `"${address}",`);
-    });
     let tokensToHide = ``;
     UNISWAP_V3_TOKENS_TO_HIDE.map((address) => {
       return (tokensToHide += `"${address}",`);
