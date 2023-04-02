@@ -1,6 +1,6 @@
-export const brand = 'DEXes Analytics';
+export const brand = 'DEXs Analytics';
 
-export const hrefRepo = 'https://github.com/albertobas/dexes-analytics';
+export const hrefRepo = 'https://github.com/albertobas/dexs-analytics';
 
 export const dictProtocols = {
   ethereum: {

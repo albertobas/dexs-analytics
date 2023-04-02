@@ -1,6 +1,6 @@
-# DEXes analytics
+# DEXs analytics
 
-[![Apache 2.0 licensed](https://img.shields.io/badge/License-Apache_2.0-yellow.svg)](https://github.com/albertobas/dexes-analytics/blob/main/LICENSE)
+[![Apache 2.0 licensed](https://img.shields.io/badge/License-Apache_2.0-yellow.svg)](https://github.com/albertobas/dexs-analytics/blob/main/LICENSE)
 
 ## About
 
@@ -25,12 +25,12 @@ In order to develop it, I have adopted a clean architecture adapted to the front
 ## Running locally
 
 ```bash
-$ git clone https://github.com/albertobas/dexes-analytics.git
-$ cd dexes-analytics
+$ git clone https://github.com/albertobas/dexs-analytics.git
+$ cd dexs-analytics
 $ npm i
 $ npm run dev
 ```
 
 ## Notes
 
-I have written a [blog post](https://www.albertobas.com/blog/dexes-analytics) about the development of this application.
+I have written a [blog post](https://www.albertobas.com/blog/dexs-analytics) about the development of this application.
